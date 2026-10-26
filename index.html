@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b49">
+<title>JULFERIIN TRANS | Plataforma de Transporte</title>
+
+<style>
+:root {
+  --navy: #071b49;
+  --blue: #0879e8;
+  --cyan: #38c9e8;
+  --pink: #df2787;
+  --white: #ffffff;
+  --bg: #f2f5fa;
+  --text: #17243b;
+  --green: #138a54;
+  --red: #d93838;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: linear-gradient(120deg, var(--navy), var(--blue));
+  color: white;
+  padding: 22px;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--cyan);
+}
+
+header p {
+  margin-top: 7px;
+  font-size: 13px;
+  opacity: .9;
+}
+
+.badge {
+  background: #ffffff20;
+  padding: 10px 14px;
+  border-radius: 9px;
+  font-size: 12px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 22px;
+}
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+h1 {
+  font-size: 25px;
+  margin-bottom: 7px;
+}
+
+.muted {
+  color: #728097;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.card {
+  background: white;
+  border-radius: 13px;
+  padding: 20px;
+  box-shadow: 0 3px 15px #10254a0a;
+  border: 1px solid #e7ebf2;
+  min-width: 0;
+}
+
+.stat-label {
+  color: #718096;
+  font-size: 13px;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 12px 0 5px;
+  overflow-wrap: anywhere;
+}
+
+.stat-icon {
+  font-size: 25px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  gap: 20px;
+}
+
+nav {
+  background: white;
+  border-radius: 13px;
+  padding: 13px;
+  height: fit-content;
+  border: 1px solid #e7ebf2;
+}
+
+nav button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  padding: 13px;
+  margin: 3px 0;
+  background: transparent;
+  color: #4d5b72;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+nav button:hover,
+nav button.active {
+  background: #eaf3ff;
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.content {
+  min-width: 0;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.section-title {
+  font-size: 20px;
+  margin-bottom: 7px;
+}
+
+.section-description {
+  color: #728097;
+  font-size: 13px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dbe2ed;
+  border-radius: 8px;
+  background: white;
+  font-size: 14px;
+  outline-color: var(--blue);
+}
+
+textarea {
+  min-height: 85px;
+  resize: vertical;
+}
+
+.field {
+  margin-bottom: 15px;
+  min-width: 0;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.btn {
+  border: 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: white;
+}
+
+.btn-dark {
+  background: var(--navy);
+  color: white;
+}
+
+.btn-light {
+  background: #eaf3ff;
+  color: var(--blue);
+}
+
+.btn-danger {
+  background: #ffeded;
+  color: var(--red);
+}
+
+.btn-success {
+  background: #e5f8ee;
+  color: var(--green);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 18px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+}
+
+th, td {
+  text-align: left;
+  padding: 13px 10px;
+  border-bottom: 1px solid #edf0f5;
+  font-size: 13px;
+}
+
+th {
+  color: #728097;
+  font-weight: bold;
+  background: #f8faff;
+}
+
+.status {
+  display: inline-block;
+  padding: 6px 9px;
+  border-radius: 20px;
+  background: #e5f8ee;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.status.pending {
+  background: #fff3dc;
+  color: #996400;
+}
+
+.status.inactive {
+  background: #ffeded;
+  color: var(--red);
+}
+
+.search {
+  margin: 12px 0;
+  max-width: 380px;
+}
+
+.map-placeholder {
+  min-height: 230px;
+  background: #e7edf5;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px;
+  margin-top: 15px;
+  line-height: 1.8;
+}
+
+.notice {
+  padding: 14px;
+  border-radius: 8px;
+  background: #fff6df;
+  color: #76571b;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #728097;
+  font-size: 12px;
+}
+
+@media(max-width: 950px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media(max-width: 520px) {
+  .container {
+    padding: 12px;
+  }
+
+  .stats {
+    gap: 9px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .stat-number {
+    font-size: 23px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: auto;
+  }
+
+  nav {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  nav button {
+    font-size: 12px;
+    padding: 10px 7px;
+  }
+
+  h1 {
+    font-size: 21px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-content">
+    <div>
+      <div class="logo">JULFERIIN <span>TRANS</span></div>
+      <p>Transporte inteligente · Moçambique</p>
+    </div>
+    <div class="badge">Painel administrativo · Protótipo</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="welcome">
+    <div>
+      <h1>Painel do Diretor-Geral</h1>
+      <p class="muted">Gestão central de veículos, motoristas, clientes e viagens.</p>
+    </div>
+    <button class="btn btn-dark" onclick="exportData()">Exportar dados JSON</button>
+  </div>
+
+  <div class="stats">
+    <div class="card">
+      <div class="stat-icon">🏍️</div>
+      <div class="stat-label">Veículos registados</div>
+      <div class="stat-number" id="vehicleCount">0</div>
+      <div class="muted">Motorizadas e automóveis</div>
+    </div>
+
+    <div class="card">
+      <div class="stat-icon">👨‍✈️</div>
+      <div class="stat-label">Motoristas registados</div>
+      <div class="stat-number" id="driverCount">0</div>
+      <div class="muted">Registos locais</div>
+    </div>
+
+    <div class="card">
+      <div class="stat-icon">👥</div>
+      <div class="stat-label">Clientes registados</div>
+      <div class="stat-number" id="clientCount">0</div>
+      <div class="muted">Registos locais</div>
+    </div>
+
+    <div class="card">
+      <div class="stat-icon">🚕</div>
+      <div class="stat-label">Viagens registadas</div>
+      <div class="stat-number" id="tripCount">0</div>
+      <div class="muted">Todos os estados</div>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <nav>
+      <button class="active" onclick="showSection('dashboard',this)">📊 Resumo</button>
+      <button onclick="showSection('vehicles',this)">🏍️ Veículos</button>
+      <button onclick="showSection('drivers',this)">👨‍✈️ Motoristas</button>
+      <button onclick="showSection('clients',this)">👥 Clientes</button>
+      <button onclick="showSection('trips',this)">🚕 Viagens</button>
+      <button onclick="showSection('deliveries',this)">📦 Entregas</button>
+      <button onclick="showSection('finance',this)">💰 Finanças</button>
+      <button onclick="showSection('gps',this)">📍 Rastreamento GPS</button>
+      <button onclick="showSection('settings',this)">⚙️ Configurações</button>
+    </nav>
+
+    <main class="content">
+
+      <section id="dashboard" class="section active">
+        <div class="card">
+          <h2 class="section-title">Bem-vindo à JULFERIIN TRANS</h2>
+          <p class="section-description">
+            Plataforma de transporte da JULFERIIN LDA. Este protótipo permite
+            registar e consultar dados guardados neste navegador.
+          </p>
+
+          <div class="notice">
+            <strong>Importante:</strong> este painel ainda não possui autenticação
+            segura nem uma base de dados online. Os dados ficam neste navegador.
+            Não introduza documentos confidenciais ou informações sensíveis.
+          </div>
+
+          <h3>Primeiros passos</h3>
+          <p class="muted" style="margin-top:12px">
+            1. Registe as motorizadas e os outros veículos.<br>
+            2. Registe os motoristas.<br>
+            3. Registe os clientes.<br>
+            4. Crie viagens e acompanhe o seu estado.<br>
+            5. Exporte os dados regularmente.
+          </p>
+        </div>
+      </section>
+
+      <section id="vehicles" class="section">
+        <div class="card">
+          <h2 class="section-title">Gestão de veículos</h2>
+          <p class="section-description">Registe motorizadas, táxis e outros veículos.</p>
+
+          <form id="vehicleForm">
+            <div class="form-grid">
+              <div class="field">
+                <label>Tipo de veículo</label>
+                <select name="type" required>
+                  <option value="Motorizada">Motorizada</option>
+                  <option value="Táxi">Táxi</option>
+                  <option value="Automóvel">Automóvel</option>
+                  <option value="Carrinha">Carrinha</option>
+                  <option value="Camião">Camião</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Matrícula / Identificador</label>
+                <input name="plate" required placeholder="Ex.: ABC-123-MC">
+              </div>
+
+              <div class="field">
+                <label>Marca e modelo</label>
+                <input name="model" required placeholder="Marca e modelo">
+              </div>
+
+              <div class="field">
+                <label>Motorista atribuído</label>
+                <input name="driver" placeholder="Nome do motorista">
+              </div>
+
+              <div class="field">
+                <label>Cidade / Província</label>
+                <input name="city" placeholder="Ex.: Palma, Cabo Delgado">
+              </div>
+
+              <div class="field">
+                <label>Estado</label>
+                <select name="status">
+                  <option>Disponível</option>
+                  <option>Em serviço</option>
+                  <option>Manutenção</option>
+                  <option>Inativo</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">+ Registar veículo</button>
+          </form>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h3>Veículos registados</h3>
+          <input class="search" id="vehicleSearch" placeholder="Pesquisar veículo...">
+          <div class="table-wrap" id="vehicleTable"></div>
+        </div>
+      </section>
+
+      <section id="drivers" class="section">
+        <div class="card">
+          <h2 class="section-title">Gestão de motoristas</h2>
+          <p class="section-description">Registe os dados básicos dos motoristas.</p>
+
+          <form id="driverForm">
+            <div class="form-grid">
+              <div class="field">
+                <label>Nome completo</label>
+                <input name="name" required>
+              </div>
+
+              <div class="field">
+                <label>Contacto</label>
+                <input name="phone" type="tel" required>
+              </div>
+
+              <div class="field">
+                <label>Tipo de licença</label>
+                <input name="license" placeholder="Quando aplicável">
+              </div>
+
+              <div class="field">
+                <label>Veículo / Matrícula</label>
+                <input name="vehicle" placeholder="Identificador do veículo">
+              </div>
+
+              <div class="field">
+                <label>Província</label>
+                <input name="city" placeholder="Província ou cidade">
+              </div>
+
+              <div class="field">
+                <label>Estado</label>
+                <select name="status">
+                  <option>Disponível</option>
+                  <option>Em serviço</option>
+                  <option>Inativo</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">+ Registar motorista</button>
+          </form>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h3>Lista de motoristas</h3>
+          <input class="search" id="driverSearch" placeholder="Pesquisar motorista...">
+          <div class="table-wrap" id="driverTable"></div>
+        </div>
+      </section>
+
+      <section id="clients" class="section">
+        <div class="card">
+          <h2 class="section-title">Gestão de clientes</h2>
+          <p class="section-description">Registe os clientes da plataforma.</p>
+
+          <form id="clientForm">
+            <div class="form-grid">
+              <div class="field">
+                <label>Nome completo</label>
+                <input name="name" required>
+              </div>
+
+              <div class="field">
+                <label>Contacto</label>
+                <input name="phone" type="tel" required>
+              </div>
+
+              <div class="field">
+                <label>Cidade</label>
+                <input name="city" placeholder="Cidade ou distrito">
+              </div>
+
+              <div class="field">
+                <label>Tipo de cliente</label>
+                <select name="type">
+                  <option>Particular</option>
+                  <option>Empresa</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">+ Registar cliente</button>
+          </form>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h3>Lista de clientes</h3>
+          <input class="search" id="clientSearch" placeholder="Pesquisar cliente...">
+          <div class="table-wrap" id="clientTable"></div>
+        </div>
+      </section>
+
+      <section id="trips" class="section">
+        <div class="card">
+          <h2 class="section-title">Gestão de viagens</h2>
+          <p class="section-description">Registe pedidos e atualize o estado das viagens.</p>
+
+          <form id="tripForm">
+            <div class="form-grid">
+              <div class="field">
+                <label>Cliente</label>
+                <input name="client" required>
+              </div>
+
+              <div class="field">
+                <label>Motorista</label>
+                <input name="driver" required>
+              </div>
+
+              <div class="field">
+                <label>Partida</label>
+                <input name="origin" required>
+              </div>
+
+              <div class="field">
+                <label>Destino</label>
+                <input name="destination" required>
+              </div>
+
+              <div class="field">
+                <label>Serviço</label>
+                <select name="service">
+                  <option>Mototáxi</option>
+                  <option>Táxi</option>
+                  <option>Transporte de passageiros</option>
+                  <option>Transporte de mercadorias</option>
+                  <option>Aluguer de veículo</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Preço estimado (MT)</label>
+                <input name="price" type="number" min="0" step="0.01" required>
+              </div>
+
+              <div class="field full">
+                <label>Estado da viagem</label>
+                <select name="status">
+                  <option>Pendente</option>
+                  <option>Atribuída</option>
+                  <option>Em curso</option>
+                  <option>Concluída</option>
+                  <option>Cancelada</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">+ Registar viagem</button>
+          </form>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h3>Histórico de viagens</h3>
+          <input class="search" id="tripSearch" placeholder="Pesquisar viagem...">
+          <div class="table-wrap" id="tripTable"></div>
+        </div>
+      </section>
+
+      <section id="deliveries" class="section">
+        <div class="card">
+          <h2 class="section-title">Entregas de encomendas</h2>
+          <p class="section-description">Registo básico de entregas.</p>
+
+          <form id="deliveryForm">
+            <div class="form-grid">
+              <div class="field">
+                <label>Nome do cliente</label>
+                <input name="client" required>
+              </div>
+
+              <div class="field">
+                <label>Contacto do cliente</label>
+                <input name="phone" type="tel">
+              </div>
+
+              <div class="field">
+                <label>Local de recolha</label>
+                <input name="origin" required>
+              </div>
+
+              <div class="field">
+                <label>Local de entrega</label>
+                <input name="destination" required>
+              </div>
+
+              <div class="field">
+                <label>Descrição da encomenda</label>
+                <input name="description" required>
+              </div>
+
+              <div class="field">
+                <label>Preço (MT)</label>
+                <input name="price" type="number" min="0" required>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">+ Registar entrega</button>
+          </form>
+
+          <div class="table-wrap" id="deliveryTable"></div>
+        </div>
+      </section>
+
+      <section id="finance" class="section">
+        <div class="card">
+          <h2 class="section-title">Finanças e comissões</h2>
+          <p class="section-description">
+            Registe movimentos financeiros para controlo interno.
+            Os valores são introduzidos manualmente neste protótipo.
+          </p>
+
+          <form id="financeForm">
+            <div class="form-grid">
+              <div class="field">
+                <label>Tipo de movimento</label>
+                <select name="type">
+                  <option>Receita</option>
+                  <option>Despesa</option>
+                  <option>Comissão</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Valor (MT)</label>
+                <input name="amount" type="number" min="0.01" step="0.01" required>
+              </div>
+
+              <div class="field full">
+                <label>Descrição</label>
+                <input name="description" required>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">+ Registar movimento</button>
+          </form>
+
+          <div id="financeSummary" style="margin-top:20px"></div>
+          <div class="table-wrap" id="financeTable"></div>
+        </div>
+      </section>
+
+      <section id="gps" class="section">
+        <div class="card">
+          <h2 class="section-title">Rastreamento GPS</h2>
+          <p class="section-description">
+            Esta demonstração permite verificar a localização do dispositivo
+            que autorizar o acesso. Não rastreia automaticamente as motorizadas.
+          </p>
+
+          <div class="notice">
+            O GPS do telefone do administrador não é a localização dos veículos.
+            Para rastrear cada veículo, será necessário integrar um dispositivo
+            GPS instalado ou uma aplicação de motorista com autorização.
+          </div>
+
+          <button class="btn btn-primary" onclick="getLocation()">Obter minha localização</button>
+          <div id="locationResult" class="map-placeholder">
+            📍 A localização ainda não foi solicitada.
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-light" onclick="openMap()">Abrir localização no mapa</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings" class="section">
+        <div class="card">
+          <h2 class="section-title">Configurações da empresa</h2>
+          <p class="section-description">
+            Dados básicos da JULFERIIN TRANS.
+          </p>
+
+          <div class="field">
+            <label>Nome da plataforma</label>
+            <input value="JULFERIIN TRANS" readonly>
+          </div>
+
+          <div class="field">
+            <label>Empresa proprietária</label>
+            <input value="JULFERIIN LDA" readonly>
+          </div>
+
+          <div class="field">
+            <label>País de operação inicial</label>
+            <input value="Moçambique" readonly>
+          </div>
+
+          <div class="field">
+            <label>Email da empresa</label>
+            <input value="julferiinlda@gmail.com" readonly>
+          </div>
+
+          <div class="notice">
+            Este protótipo não possui login administrativo real.
+            Antes de publicar, configure autenticação segura, base de dados,
+            permissões, backups e proteção de dados pessoais.
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" onclick="exportData()">Exportar cópia de segurança</button>
+            <button class="btn btn-danger" onclick="clearData()">Apagar todos os dados locais</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  JULFERIIN TRANS · Propriedade da JULFERIIN LDA · Moçambique<br>
+  Protótipo inicial para desenvolvimento e testes.
+</footer>
+
+<script>
+const tables = {
+  vehicles: [],
+  drivers: [],
+  clients: [],
+  trips: [],
+  deliveries: [],
+  finance: []
+};
+
+let currentLocation = null;
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem("julferiinTransData");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      Object.keys(tables).forEach(key => {
+        if (Array.isArray(parsed[key])) tables[key] = parsed[key];
+      });
+    }
+  } catch (error) {
+    alert("Não foi possível ler os dados locais.");
+  }
+}
+
+function saveData() {
+  try {
+    localStorage.setItem("julferiinTransData", JSON.stringify(tables));
+    updateDashboard();
+  } catch (error) {
+    alert("Não foi possível guardar os dados. O armazenamento pode estar cheio.");
+  }
+}
+
+function showSection(id, button) {
+  document.querySelectorAll(".section").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  document.querySelectorAll("nav button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+  button.classList.add("active");
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function addRecord(tableName, record) {
+  record.id = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  record.createdAt = new Date().toISOString();
+  tables[tableName].push(record);
+  saveData();
+  renderAll();
+}
+
+function bindForm(formId, tableName, fields) {
+  document.getElementById(formId).addEventListener("submit", event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const record = {};
+
+    fields.forEach(field => {
+      record[field] = String(data.get(field) ?? "").trim();
+    });
+
+    addRecord(tableName, record);
+    form.reset();
+    alert("Registo guardado neste navegador.");
+  });
+}
+
+bindForm("vehicleForm", "vehicles",
+  ["type", "plate", "model", "driver", "city", "status"]);
+
+bindForm("driverForm", "drivers",
+  ["name", "phone", "license", "vehicle", "city", "status"]);
+
+bindForm("clientForm", "clients",
+  ["name", "phone", "city", "type"]);
+
+bindForm("tripForm", "trips",
+  ["client", "driver", "origin", "destination", "service", "price", "status"]);
+
+bindForm("deliveryForm", "deliveries",
+  ["client", "phone", "origin", "destination", "description", "price"]);
+
+bindForm("financeForm", "finance",
+  ["type", "amount", "description"]);
+
+function renderTable(elementId, tableName, columns, searchId) {
+  const element = document.getElementById(elementId);
+  const query = searchId
+    ? document.getElementById(searchId).value.toLowerCase().trim()
+    : "";
+
+  const filtered = tables[tableName].filter(row =>
+    columns.some(column =>
+      String(row[column.key] ?? "").toLowerCase().includes(query)
+    )
+  );
+
+  if (!filtered.length) {
+    element.innerHTML = '<p class="muted" style="padding:15px">Nenhum registo encontrado.</p>';
+    return;
+  }
+
+  let html = "<table><thead><tr>";
+
+  columns.forEach(column => {
+    html += "<th>" + escapeHTML(column.label) + "</th>";
+  });
+
+  html += "<th>Ações</th></tr></thead><tbody>";
+
+  filtered.forEach(row => {
+    html += "<tr>";
+
+    columns.forEach(column => {
+      let value = escapeHTML(row[column.key] || "—");
+
+      if (column.key === "status") {
+        const status = String(row[column.key] || "");
+        const className = status === "Inativo" || status === "Cancelada"
+          ? "inactive"
+          : status === "Pendente" || status === "Manutenção"
+          ? "pending"
+          : "";
+
+        value = '<span class="status ' + className + '">' + value + '</span>';
+      }
+
+      html += "<td>" + value + "</td>";
+    });
+
+    html += '<td><button class="btn btn-danger" onclick="deleteRecord(\'' +
+      tableName + "','" + row.id + '\')">Eliminar</button></td>';
+
+    html += "</tr>";
+  });
+
+  html += "</tbody></table>";
+  element.innerHTML = html;
+}
+
+function deleteRecord(tableName, id) {
+  if (!confirm("Tem a certeza de que deseja eliminar este registo?")) return;
+
+  tables[tableName] = tables[tableName].filter(row => row.id !== id);
+  saveData();
+  renderAll();
+}
+
+function updateDashboard() {
+  document.getElementById("vehicleCount").textContent = tables.vehicles.length;
+  document.getElementById("driverCount").textContent = tables.drivers.length;
+  document.getElementById("clientCount").textContent = tables.clients.length;
+  document.getElementById("tripCount").textContent = tables.trips.length;
+}
+
+function renderFinance() {
+  const income = tables.finance
+    .filter(row => row.type === "Receita")
+    .reduce((sum, row) => sum + Number(row.amount || 0), 0);
+
+  const expenses = tables.finance
+    .filter(row => row.type === "Despesa")
+    .reduce((sum, row) => sum + Number(row.amount || 0), 0);
+
+  const commissions = tables.finance
+    .filter(row => row.type === "Comissão")
+    .reduce((sum, row) => sum + Number(row.amount || 0), 0);
+
+  document.getElementById("financeSummary").innerHTML = `
+    <div class="stats">
+      <div class="card">
+        <div class="stat-label">Receitas (MT)</div>
+        <div class="stat-number">${income.toFixed(2)}</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Despesas (MT)</div>
+        <div class="stat-number">${expenses.toFixed(2)}</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Comissões (MT)</div>
+        <div class="stat-number">${commissions.toFixed(2)}</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Saldo simples (MT)</div>
+        <div class="stat-number">${(income-expenses-commissions).toFixed(2)}</div>
+      </div>
+    </div>`;
+
+  renderTable("financeTable", "finance", [
+    {key:"type",label:"Movimento"},
+    {key:"amount",label:"Valor (MT)"},
+    {key:"description",label:"Descrição"}
+  ]);
+}
+
+function renderAll() {
+  renderTable("vehicleTable", "vehicles", [
+    {key:"type",label:"Tipo"},
+    {key:"plate",label:"Matrícula"},
+    {key:"model",label:"Modelo"},
+    {key:"driver",label:"Motorista"},
+    {key:"city",label:"Local"},
+    {key:"status",label:"Estado"}
+  ], "vehicleSearch");
+
+  renderTable("driverTable", "drivers", [
+    {key:"name",label:"Motorista"},
+    {key:"phone",label:"Contacto"},
+    {key:"license",label:"Licença"},
+    {key:"vehicle",label:"Veículo"},
+    {key:"city",label:"Local"},
+    {key:"status",label:"Estado"}
+  ], "driverSearch");
+
+  renderTable("clientTable", "clients", [
+    {key:"name",label:"Cliente"},
+    {key:"phone",label:"Contacto"},
+    {key:"city",label:"Local"},
+    {key:"type",label:"Tipo"}
+  ], "clientSearch");
+
+  renderTable("tripTable", "trips", [
+    {key:"client",label:"Cliente"},
+    {key:"driver",label:"Motorista"},
+    {key:"origin",label:"Partida"},
+    {key:"destination",label:"Destino"},
+    {key:"service",label:"Serviço"},
+    {key:"price",label:"Preço MT"},
+    {key:"status",label:"Estado"}
+  ], "tripSearch");
+
+  renderTable("deliveryTable", "deliveries", [
+    {key:"client",label:"Cliente"},
+    {key:"origin",label:"Recolha"},
+    {key:"destination",label:"Destino"},
+    {key:"description",label:"Encomenda"},
+    {key:"price",label:"Preço MT"}
+  ]);
+
+  renderFinance();
+  updateDashboard();
+}
+
+["vehicleSearch", "driverSearch", "clientSearch", "tripSearch"].forEach(id => {
+  document.getElementById(id).addEventListener("input", renderAll);
+});
+
+function exportData() {
+  const blob = new Blob(
+    [JSON.stringify({
+      company: "JULFERIIN LDA",
+      platform: "JULFERIIN TRANS",
+      exportedAt: new Date().toISOString(),
+      ...tables
+    }, null, 2)],
+    {type:"application/json"}
+  );
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "julferiin-trans-backup.json";
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+function clearData() {
+  if (!confirm("ATENÇÃO: eliminar todos os registos guardados neste navegador?")) return;
+  if (!confirm("Confirme novamente. Esta ação não pode ser desfeita.")) return;
+
+  Object.keys(tables).forEach(key => tables[key] = []);
+  saveData();
+  renderAll();
+}
+
+function getLocation() {
+  const output = document.getElementById("locationResult");
+
+  if (!navigator.geolocation) {
+    output.textContent = "Este navegador não suporta geolocalização.";
+    return;
+  }
+
+  output.textContent = "A obter localização...";
+
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      currentLocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      output.textContent =
+        "Localização do dispositivo autorizado: " +
+        currentLocation.lat.toFixed(6) + ", " +
+        currentLocation.lng.toFixed(6) +
+        ". Precisão aproximada: " +
+        Math.round(position.coords.accuracy) + " metros.";
+    },
+    error => {
+      output.textContent =
+        "Não foi possível obter a localização. Verifique as permissões e a ligação segura.";
+    },
+    {enableHighAccuracy:true, timeout:15000, maximumAge:0}
+  );
+}
+
+function openMap() {
+  if (!currentLocation) {
+    alert("Primeiro obtenha a localização.");
+    return;
+  }
+
+  const url = "https://www.openstreetmap.org/?mlat=" +
+    currentLocation.lat + "&mlon=" + currentLocation.lng +
+    "#map=16/" + currentLocation.lat + "/" + currentLocation.lng;
+
+  window.open(url, "_blank", "noopener");
+}
+
+loadData();
+renderAll();
+</script>
+
+</body>
+</html>
